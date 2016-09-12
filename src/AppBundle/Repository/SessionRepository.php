@@ -3,6 +3,7 @@
 namespace AppBundle\Repository;
 
 use Doctrine\ORM\EntityRepository;
+use Doctrine\ORM\QueryBuilder;
 
 /**
  * SessionRepository
@@ -12,4 +13,52 @@ use Doctrine\ORM\EntityRepository;
  */
 class SessionRepository extends EntityRepository
 {
+    /**
+     * GET results by param
+     * @param array $params
+     * @return array
+     */
+    public function getElements(array $params = [])
+    {
+        $q = $this->createQueryBuilder('s')
+            ->leftJoin('s.patient', 'p');
+        $this->addFilterByParams($q, $params);
+
+        return $q->getQuery()->getResult();
+    }
+
+    /**
+     * @param QueryBuilder $q
+     * @param array $params
+     */
+    private function addFilterByParams(QueryBuilder $q, array $params)
+    {
+        // GET result by id
+        if (array_key_exists('by_id', $params)) {
+            $q
+                ->andWhere($q->expr()->eq('s.id', ':id'))
+                ->setParameter('id', $params['by_id']);
+        }
+
+        // GET result by patient
+        if (array_key_exists('by_patient_id', $params)) {
+            $q
+                ->andWhere($q->expr()->eq('p.id', ':by_patient_id'))
+                ->setParameter('by_patient_id', $params['by_patient_id']);
+        }
+
+        // GET result by specialist
+        if (array_key_exists('by_specialist_id', $params)) {
+            $q
+                ->andWhere($q->expr()->eq('s.specialist', ':by_specialist_id'))
+                ->setParameter('by_specialist_id', $params['by_specialist_id']);
+        }
+
+        // GET results by keywords
+        if (array_key_exists('by_keywords', $params)) {
+            $q
+                ->andWhere($q->expr()->like('s.name', ':by_keywords'))
+                ->setParameter('by_keywords', $params['by_keywords']);
+        }
+    }
 }

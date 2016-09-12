@@ -1,0 +1,29 @@
+operatingroom_index:
+    path:     /
+    defaults: { _controller: "AppBundle:OperatingRoom:index" }
+    methods:  GET
+
+operatingroom_show:
+    path:     /{id}/show
+    defaults: { _controller: "AppBundle:OperatingRoom:show" }
+    methods:  GET
+
+get_session_specialist_anesthetist:
+    path:     /get/{id}/session/specialist/anesthetist
+    defaults: { _controller: "AppBundle:OperatingRoom:getSessionSpecialistAndAnesthetist" }
+    methods:  GET
+
+operatingroom_new:
+    path:     /new
+    defaults: { _controller: "AppBundle:OperatingRoom:new" }
+    methods:  [GET, POST]
+
+operatingroom_edit:
+    path:     /{id}/edit
+    defaults: { _controller: "AppBundle:OperatingRoom:edit" }
+    methods:  [GET, POST]
+
+operatingroom_delete:
+    path:     /{id}/delete
+    defaults: { _controller: "AppBundle:OperatingRoom:delete" }
+    methods:  DELETE

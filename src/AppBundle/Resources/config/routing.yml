@@ -1,20 +1,19 @@
+app_specialist:
+    resource: "@AppBundle/Resources/config/routing/specialist.yml"
+    prefix:   /specialist
 
-sessions:
-    path:     /sessions
-    defaults: { _controller: AppBundle:BookingSession:index }
+app_anesthetist:
+    resource: "@AppBundle/Resources/config/routing/anesthetist.yml"
+    prefix:   /anesthetist
 
-book_session:
-    path:     /book/session
-    defaults: { _controller: AppBundle:BookingSession:bookSession }
+app_patient:
+    resource: "@AppBundle/Resources/config/routing/patient.yml"
+    prefix:   /patient
 
-update_session:
-    path:     /update/session
-    defaults: { _controller: AppBundle:BookingSession:updateSession }
+app_operatingroom:
+    resource: "@AppBundle/Resources/config/routing/operatingroom.yml"
+    prefix:   /operatingroom
 
-show_session:
-    path:     /show/session/{:id}
-    defaults: { _controller: AppBundle:BookingSession:showSession }
-
-remove_session:
-    path:     /remove/session/{:id}
-    defaults: { _controller: AppBundle:BookingSession:removeSession }
+app_session:
+    resource: "@AppBundle/Resources/config/routing/session.yml"
+    prefix:   /session

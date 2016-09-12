@@ -26,15 +26,18 @@ AppBundle\Entity\Session:
         createdAt:
             type: datetime
             column: created_at
+            gedmo:
+                timestampable:
+                    on: create
         updatedAt:
             type: datetime
             column: updated_at
+            gedmo:
+                timestampable:
+                    on: update
         patientId:
             type: integer
             column: patient_id
-        otId:
-            type: integer
-            column: ot_id
     manyToOne:
         patient:
             targetEntity: AppBundle\Entity\Patient
@@ -43,12 +46,15 @@ AppBundle\Entity\Session:
                 referencedColumnName: id
     oneToOne:
         specialist:
-            targetEntity: AppBundle\Entity\Doctor
-            mappedBy: Session
-            cascade: ["persist", "merge"]
+            targetEntity: AppBundle\Entity\Specialist
+            joinColumn:
+                name: specialist_id
+                referencedColumnName: id
+            cascade: [persist, merge]
+            inversedBy: session
     manyToMany:
         anesthetists:
-            targetEntity: AppBundle\Entity\Doctor
+            targetEntity: AppBundle\Entity\Anesthetist
             inversedBy: Session
             joinTable:
                 name: session_anesthetists
@@ -57,5 +63,16 @@ AppBundle\Entity\Session:
                         referencedColumnName: id
                 inverseJoinColumns:
                     anesthetist_id:
+                        referencedColumnName: id
+        operatingRooms:
+            targetEntity: AppBundle\Entity\OperatingRoom
+            inversedBy: Session
+            joinTable:
+                name: session_operating_rooms
+                joinColumns:
+                    session_id:
+                        referencedColumnName: id
+                inverseJoinColumns:
+                    operating_room_id:
                         referencedColumnName: id
     lifecycleCallbacks: {  }

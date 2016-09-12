@@ -1,0 +1,44 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>OperatingRoom</h1>
+
+    <table>
+        <tbody>
+        <tr>
+            <th>Id</th>
+            <td>{{ operatingRoom.id }}</td>
+        </tr>
+        <tr>
+            <th>Ottype</th>
+            <td>{{ operatingRoom.otType }}</td>
+        </tr>
+        <tr>
+            <th>Otname</th>
+            <td>{{ operatingRoom.otName }}</td>
+        </tr>
+        <tr>
+            <th>Otfrom</th>
+            <td>{% if operatingRoom.otFrom %}{{ operatingRoom.otFrom|date('H:i:s') }}{% endif %}</td>
+        </tr>
+        <tr>
+            <th>Otto</th>
+            <td>{% if operatingRoom.otTo %}{{ operatingRoom.otTo|date('H:i:s') }}{% endif %}</td>
+        </tr>
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('operatingroom_index') }}">Back to the list</a>
+        </li>
+        <li>
+            <a href="{{ path('operatingroom_edit', { 'id': operatingRoom.id }) }}">Edit</a>
+        </li>
+        <li>
+            {{ form_start(delete_form) }}
+            <input type="submit" value="Delete">
+            {{ form_end(delete_form) }}
+        </li>
+    </ul>
+{% endblock %}

@@ -1,0 +1,50 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>OperatingRoom list</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Ottype</th>
+                <th>Otname</th>
+                <th>Otfrom</th>
+                <th>Otto</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for operatingRoom in operatingRooms %}
+            <tr>
+                <td><a href="{{ path('operatingroom_show', { 'id': operatingRoom.id }) }}">{{ operatingRoom.id }}</a></td>
+                <td>{{ operatingRoom.otType }}</td>
+                <td>{{ operatingRoom.otName }}</td>
+                <td>{% if operatingRoom.otFrom %}{{ operatingRoom.otFrom|date('H:i:s') }}{% endif %}</td>
+                <td>{% if operatingRoom.otTo %}{{ operatingRoom.otTo|date('H:i:s') }}{% endif %}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('operatingroom_show', { 'id': operatingRoom.id }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('operatingroom_edit', { 'id': operatingRoom.id }) }}">edit</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('get_session_specialist_anesthetist', { 'id': operatingRoom.id }) }}">
+                                Get session, specialist & anesthetist
+                            </a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('operatingroom_new') }}">Create a new entry</a>
+        </li>
+    </ul>
+{% endblock %}

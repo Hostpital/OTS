@@ -1,0 +1,29 @@
+specialist_index:
+    path:     /
+    defaults: { _controller: "AppBundle:Specialist:index" }
+    methods:  GET
+
+specialist_show:
+    path:     /{id}/show
+    defaults: { _controller: "AppBundle:Specialist:show" }
+    methods:  GET
+
+get_session_and_or_by_specialist:
+    path:     /get/{id}/session/or/by/specialist
+    defaults: { _controller: "AppBundle:Specialist:getSessionAndORBySpecialist" }
+    methods:  GET
+
+specialist_new:
+    path:     /new
+    defaults: { _controller: "AppBundle:Specialist:new" }
+    methods:  [GET, POST]
+
+specialist_edit:
+    path:     /{id}/edit
+    defaults: { _controller: "AppBundle:Specialist:edit" }
+    methods:  [GET, POST]
+
+specialist_delete:
+    path:     /{id}/delete
+    defaults: { _controller: "AppBundle:Specialist:delete" }
+    methods:  DELETE

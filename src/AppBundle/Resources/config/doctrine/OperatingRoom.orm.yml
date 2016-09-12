@@ -23,4 +23,8 @@ AppBundle\Entity\OperatingRoom:
         otTo:
             type: time
             column: ot_to
+    manyToMany:
+        sessions:
+            targetEntity: AppBundle\Entity\Session
+            mappedBy: operatingRooms
     lifecycleCallbacks: {  }

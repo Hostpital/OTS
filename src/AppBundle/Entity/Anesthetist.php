@@ -5,11 +5,10 @@ namespace AppBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * Doctor
+ * Anesthetist
  */
-class Doctor
+class Anesthetist
 {
-
     /**
      * @var integer
      */
@@ -19,11 +18,6 @@ class Doctor
      * @var string
      */
     private $name;
-
-    /**
-     * @var string
-     */
-    private $type;
 
     /**
      * @var \Doctrine\Common\Collections\Collection
@@ -52,7 +46,7 @@ class Doctor
      * Set name
      *
      * @param string $name
-     * @return Doctor
+     * @return Anesthetist
      */
     public function setName($name)
     {
@@ -72,33 +66,10 @@ class Doctor
     }
 
     /**
-     * Set type
-     *
-     * @param string $type
-     * @return Doctor
-     */
-    public function setType($type)
-    {
-        $this->type = $type;
-
-        return $this;
-    }
-
-    /**
-     * Get type
-     *
-     * @return string 
-     */
-    public function getType()
-    {
-        return $this->type;
-    }
-
-    /**
      * Add sessions
      *
      * @param \AppBundle\Entity\Session $sessions
-     * @return Doctor
+     * @return Anesthetist
      */
     public function addSession(\AppBundle\Entity\Session $sessions)
     {

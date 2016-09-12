@@ -1,0 +1,51 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Session list</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Sessionname</th>
+                <th>Sessionstart</th>
+                <th>Sessionend</th>
+                <th>Issuccess</th>
+                <th>Createdat</th>
+                <th>Updatedat</th>
+                <th>Patientid</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for session in sessions %}
+            <tr>
+                <td><a href="{{ path('session_show', { 'id': session.id }) }}">{{ session.id }}</a></td>
+                <td>{{ session.sessionName }}</td>
+                <td>{% if session.sessionStart %}{{ session.sessionStart|date('Y-m-d H:i:s') }}{% endif %}</td>
+                <td>{% if session.sessionEnd %}{{ session.sessionEnd|date('Y-m-d H:i:s') }}{% endif %}</td>
+                <td>{% if session.isSuccess %}Yes{% else %}No{% endif %}</td>
+                <td>{% if session.createdAt %}{{ session.createdAt|date('Y-m-d H:i:s') }}{% endif %}</td>
+                <td>{% if session.updatedAt %}{{ session.updatedAt|date('Y-m-d H:i:s') }}{% endif %}</td>
+                <td>{{ session.patientId }}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('session_show', { 'id': session.id }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('session_edit', { 'id': session.id }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('session_new') }}">Create a new entry</a>
+        </li>
+    </ul>
+{% endblock %}

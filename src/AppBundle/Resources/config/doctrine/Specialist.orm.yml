@@ -1,0 +1,21 @@
+AppBundle\Entity\Specialist:
+    type: entity
+    table: specialists
+    repositoryClass: AppBundle\Repository\SpecialistRepository
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+    fields:
+        name:
+            type: string
+            length: 255
+            column: Name
+    oneToOne:
+        session:
+            targetEntity: AppBundle\Entity\Session
+            mappedBy: specialist
+            cascade: ["persist", "merge"]
+    lifecycleCallbacks: {  }

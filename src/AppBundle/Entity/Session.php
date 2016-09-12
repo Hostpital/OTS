@@ -50,12 +50,7 @@ class Session
     private $patientId;
 
     /**
-     * @var integer
-     */
-    private $otId;
-
-    /**
-     * @var \AppBundle\Entity\Doctor
+     * @var \AppBundle\Entity\Specialist
      */
     private $specialist;
 
@@ -70,11 +65,17 @@ class Session
     private $anesthetists;
 
     /**
+     * @var \Doctrine\Common\Collections\Collection
+     */
+    private $operatingRooms;
+
+    /**
      * Constructor
      */
     public function __construct()
     {
         $this->anesthetists = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->operatingRooms = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
     /**
@@ -249,35 +250,12 @@ class Session
     }
 
     /**
-     * Set otId
-     *
-     * @param integer $otId
-     * @return Session
-     */
-    public function setOtId($otId)
-    {
-        $this->otId = $otId;
-
-        return $this;
-    }
-
-    /**
-     * Get otId
-     *
-     * @return integer 
-     */
-    public function getOtId()
-    {
-        return $this->otId;
-    }
-
-    /**
      * Set specialist
      *
-     * @param \AppBundle\Entity\Doctor $specialist
+     * @param \AppBundle\Entity\Specialist $specialist
      * @return Session
      */
-    public function setSpecialist(\AppBundle\Entity\Doctor $specialist = null)
+    public function setSpecialist(\AppBundle\Entity\Specialist $specialist = null)
     {
         $this->specialist = $specialist;
 
@@ -287,7 +265,7 @@ class Session
     /**
      * Get specialist
      *
-     * @return \AppBundle\Entity\Doctor 
+     * @return \AppBundle\Entity\Specialist 
      */
     public function getSpecialist()
     {
@@ -320,10 +298,10 @@ class Session
     /**
      * Add anesthetists
      *
-     * @param \AppBundle\Entity\Doctor $anesthetists
+     * @param \AppBundle\Entity\Anesthetist $anesthetists
      * @return Session
      */
-    public function addAnesthetist(\AppBundle\Entity\Doctor $anesthetists)
+    public function addAnesthetist(\AppBundle\Entity\Anesthetist $anesthetists)
     {
         $this->anesthetists[] = $anesthetists;
 
@@ -333,9 +311,9 @@ class Session
     /**
      * Remove anesthetists
      *
-     * @param \AppBundle\Entity\Doctor $anesthetists
+     * @param \AppBundle\Entity\Anesthetist $anesthetists
      */
-    public function removeAnesthetist(\AppBundle\Entity\Doctor $anesthetists)
+    public function removeAnesthetist(\AppBundle\Entity\Anesthetist $anesthetists)
     {
         $this->anesthetists->removeElement($anesthetists);
     }
@@ -348,5 +326,38 @@ class Session
     public function getAnesthetists()
     {
         return $this->anesthetists;
+    }
+
+    /**
+     * Add operatingRooms
+     *
+     * @param \AppBundle\Entity\OperatingRoom $operatingRooms
+     * @return Session
+     */
+    public function addOperatingRoom(\AppBundle\Entity\OperatingRoom $operatingRooms)
+    {
+        $this->operatingRooms[] = $operatingRooms;
+
+        return $this;
+    }
+
+    /**
+     * Remove operatingRooms
+     *
+     * @param \AppBundle\Entity\OperatingRoom $operatingRooms
+     */
+    public function removeOperatingRoom(\AppBundle\Entity\OperatingRoom $operatingRooms)
+    {
+        $this->operatingRooms->removeElement($operatingRooms);
+    }
+
+    /**
+     * Get operatingRooms
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getOperatingRooms()
+    {
+        return $this->operatingRooms;
     }
 }

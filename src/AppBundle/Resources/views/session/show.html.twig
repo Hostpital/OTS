@@ -1,0 +1,88 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Session</h1>
+
+    <table>
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ session.id }}</td>
+            </tr>
+            <tr>
+                <th>Sessionname</th>
+                <td>{{ session.sessionName }}</td>
+            </tr>
+            <tr>
+                <th>Sessionstart</th>
+                <td>{% if session.sessionStart %}{{ session.sessionStart|date('Y-m-d H:i:s') }}{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Sessionend</th>
+                <td>{% if session.sessionEnd %}{{ session.sessionEnd|date('Y-m-d H:i:s') }}{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Issuccess</th>
+                <td>{% if session.isSuccess %}Yes{% else %}No{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Createdat</th>
+                <td>{% if session.createdAt %}{{ session.createdAt|date('Y-m-d H:i:s') }}{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Updatedat</th>
+                <td>{% if session.updatedAt %}{{ session.updatedAt|date('Y-m-d H:i:s') }}{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Patientid</th>
+                <td>{{ session.patient.name }}</td>
+            </tr>
+            <tr>
+                <th>Specialist</th>
+                <td>
+                    {% if session.specialist|length %}
+                        {{ session.specialist.name }}
+                    {% endif %}
+                </td>
+            </tr>
+            <tr>
+                <th>Anesthetists</th>
+                <td>
+                    {% if session.anesthetists|length %}
+                    <ul>
+                        {% for anesthetist in session.anesthetists %}
+                        <li>{{ anesthetist.name }}</li>
+                        {% endfor %}
+                    </ul>
+                    {% endif %}
+                </td>
+            </tr>
+            <tr>
+                <th>Operating rooms</th>
+                <td>
+                    {% if session.operatingRooms|length %}
+                    <ul>
+                        {% for operatingRoom in session.operatingRooms %}
+                        <li>{{ operatingRoom.otName }}</li>
+                        {% endfor %}
+                    </ul>
+                    {% endif %}
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('session_index') }}">Back to the list</a>
+        </li>
+        <li>
+            <a href="{{ path('session_edit', { 'id': session.id }) }}">Edit</a>
+        </li>
+        <li>
+            {{ form_start(delete_form) }}
+                <input type="submit" value="Delete">
+            {{ form_end(delete_form) }}
+        </li>
+    </ul>
+{% endblock %}

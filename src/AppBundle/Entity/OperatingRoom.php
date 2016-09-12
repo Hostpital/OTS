@@ -34,6 +34,18 @@ class OperatingRoom
      */
     private $otTo;
 
+    /**
+     * @var \Doctrine\Common\Collections\Collection
+     */
+    private $sessions;
+
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->sessions = new \Doctrine\Common\Collections\ArrayCollection();
+    }
 
     /**
      * Get id
@@ -135,5 +147,38 @@ class OperatingRoom
     public function getOtTo()
     {
         return $this->otTo;
+    }
+
+    /**
+     * Add sessions
+     *
+     * @param \AppBundle\Entity\Session $sessions
+     * @return OperatingRoom
+     */
+    public function addSession(\AppBundle\Entity\Session $sessions)
+    {
+        $this->sessions[] = $sessions;
+
+        return $this;
+    }
+
+    /**
+     * Remove sessions
+     *
+     * @param \AppBundle\Entity\Session $sessions
+     */
+    public function removeSession(\AppBundle\Entity\Session $sessions)
+    {
+        $this->sessions->removeElement($sessions);
+    }
+
+    /**
+     * Get sessions
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getSessions()
+    {
+        return $this->sessions;
     }
 }

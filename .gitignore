@@ -17,5 +17,4 @@ composer.lock
 UPGRADE.md
 LICENSE
 README.md
-/bin/
 /composer.phar

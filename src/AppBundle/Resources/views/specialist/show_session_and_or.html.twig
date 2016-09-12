@@ -1,0 +1,40 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Get session and operating rooms by specialist</h1>
+
+    <table>
+        <tbody>
+            {% if results|length %}
+                {% for result in results %}
+                    <tr>
+                        <th>Name</th>
+                        <td>{{ result.name }}</td>
+                    </tr>
+                    <tr>
+                        <th>Session</th>
+                        <td>{{ result.session.sessionName }}</td>
+                    </tr>
+                    <tr>
+                        <th>Operating rooms</th>
+                        <td>
+                            {% if result.session.operatingrooms is defined and result.session.operatingrooms|length %}
+                                <ul>
+                                    {% for ot in result.session.operatingrooms %}
+                                        <li>{{ ot.otName }}</li>
+                                    {% endfor %}
+                                </ul>
+                            {% endif %}
+                        </td>
+                    </tr>
+                {% endfor %}
+            {% endif %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('specialist_index') }}">Back to the list</a>
+        </li>
+    </ul>
+{% endblock %}

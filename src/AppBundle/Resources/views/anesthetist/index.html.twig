@@ -1,0 +1,39 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Anesthetist list</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Name</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for anesthetist in anesthetists %}
+            <tr>
+                <td><a href="{{ path('anesthetist_show', { 'id': anesthetist.id }) }}">{{ anesthetist.id }}</a></td>
+                <td>{{ anesthetist.name }}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('anesthetist_show', { 'id': anesthetist.id }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('anesthetist_edit', { 'id': anesthetist.id }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('anesthetist_new') }}">Create a new entry</a>
+        </li>
+    </ul>
+{% endblock %}
