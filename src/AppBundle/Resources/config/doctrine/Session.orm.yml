@@ -1,0 +1,61 @@
+AppBundle\Entity\Session:
+    type: entity
+    table: sessions
+    repositoryClass: AppBundle\Repository\SessionRepository
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+    fields:
+        sessionName:
+            type: string
+            length: 255
+            column: session_name
+        sessionStart:
+            type: datetime
+            column: session_start
+        sessionEnd:
+            type: datetime
+            column: session_end
+        isSuccess:
+            type: boolean
+            nullable: true
+            column: is_success
+        createdAt:
+            type: datetime
+            column: created_at
+        updatedAt:
+            type: datetime
+            column: updated_at
+        patientId:
+            type: integer
+            column: patient_id
+        otId:
+            type: integer
+            column: ot_id
+    manyToOne:
+        patient:
+            targetEntity: AppBundle\Entity\Patient
+            joinColumn:
+                name: patient_id
+                referencedColumnName: id
+    oneToOne:
+        specialist:
+            targetEntity: AppBundle\Entity\Doctor
+            mappedBy: Session
+            cascade: ["persist", "merge"]
+    manyToMany:
+        anesthetists:
+            targetEntity: AppBundle\Entity\Doctor
+            inversedBy: Session
+            joinTable:
+                name: session_anesthetists
+                joinColumns:
+                    session_id:
+                        referencedColumnName: id
+                inverseJoinColumns:
+                    anesthetist_id:
+                        referencedColumnName: id
+    lifecycleCallbacks: {  }

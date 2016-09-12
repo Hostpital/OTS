@@ -1,0 +1,29 @@
+AppBundle\Entity\Patient:
+    type: entity
+    table: patients
+    repositoryClass: AppBundle\Repository\PatientRepository
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+    fields:
+        name:
+            type: string
+            length: 255
+        address:
+            type: string
+            length: 255
+        attendant:
+            type: string
+            length: 255
+        contactNumber:
+            type: string
+            length: '20'
+            column: contact_number
+    oneToMany:
+        Sessions:
+            targetEntity: AppBundle\Entity\Session
+            mappedBy: Patient
+    lifecycleCallbacks: {  }

@@ -1,0 +1,20 @@
+
+sessions:
+    path:     /sessions
+    defaults: { _controller: AppBundle:BookingSession:index }
+
+book_session:
+    path:     /book/session
+    defaults: { _controller: AppBundle:BookingSession:bookSession }
+
+update_session:
+    path:     /update/session
+    defaults: { _controller: AppBundle:BookingSession:updateSession }
+
+show_session:
+    path:     /show/session/{:id}
+    defaults: { _controller: AppBundle:BookingSession:showSession }
+
+remove_session:
+    path:     /remove/session/{:id}
+    defaults: { _controller: AppBundle:BookingSession:removeSession }

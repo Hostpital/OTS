@@ -1,0 +1,26 @@
+AppBundle\Entity\OperatingRoom:
+    type: entity
+    table: operating_rooms
+    repositoryClass: AppBundle\Repository\OperatingRoomRepository
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+    fields:
+        otType:
+            type: string
+            length: 255
+            column: ot_type
+        otName:
+            type: string
+            length: 255
+            column: ot_name
+        otFrom:
+            type: time
+            column: ot_from
+        otTo:
+            type: time
+            column: ot_to
+    lifecycleCallbacks: {  }
