@@ -1,6 +1,9 @@
 <?php
 
+/**
+ * Class AbstractEntity
+ */
 abstract class AbstractEntity
 {
-    //put your code here
+    // We can put some common code here
 }
