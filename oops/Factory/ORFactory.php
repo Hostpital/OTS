@@ -16,7 +16,7 @@ class ORFactory
      */
     public static function getInstance($className)
     {
-        $instance = '\Type\\' . self::underscore2Camelcase(strtolower($className));
+        $instance = 'Type\\' . self::underscore2Camelcase(strtolower($className));
         if (class_exists($instance)) {
             return new $instance();
         }

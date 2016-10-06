@@ -2,40 +2,84 @@
 
 namespace Type;
 
+/**
+ * Class Specialist
+ * @package Type
+ */
 class Specialist extends \AbstractEntity
 {
     /**
-     * @var
+     * @var string
      */
-    private $session;
+    private $name;
+
+    /**
+     * @var array
+     */
+    private $sessions;
+
+    /**
+     * Specialist constructor.
+     */
+    public function __construct()
+    {
+        $this->sessions = [];
+    }
+
+    /**
+     * @param $name
+     * @return $this
+     */
+    public function setName($name)
+    {
+        $this->name = $name;
+
+        return $this;
+    }
 
     /**
      * @return mixed
      */
-    public function getSession()
+    public function getName()
     {
-        return $this->session;
+        return $this->name;
     }
 
     /**
-     * @var
+     * @param Session $session
+     * @return $this
      */
-    private $operatingRoom;
+    public function addSession(Session $session)
+    {
+        $this->sessions[] = $session;
+
+        return $this;
+    }
 
     /**
-     * @return mixed
+     * @return array
      */
-    public function getOperatingRoom()
+    public function getSessions()
     {
-        return $this->operatingRoom;
+        return $this->sessions;
     }
-    
+
     /**
-     * @param OperatingRoom $orObj
-     * @return object
+     * Check availability 
+     * @param \DateTime $from
+     * @param \DateTime $to
+     * @return bool
      */
-    public function getByOR(OperatingRoom $orObj)
+    public function checkAvailability(\DateTime $from, \DateTime $to)
     {
-        return $orObj->getSpecialist();
+        $isAvailable = false;
+        foreach ($this->getSessions() as $session) {
+            if (($from >= $session->getFrom() && $from <= $session->getTo()) || ($to >= $session->getFrom() && $to <= $session->getTo())) {
+                $isAvailable = true;
+                break;
+            }
+        }
+
+        return $isAvailable;
     }
 }

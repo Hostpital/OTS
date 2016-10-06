@@ -9,50 +9,58 @@ namespace Type;
 class OperatingRoom extends \AbstractEntity
 {
     /**
-     * @var
+     * @var string
      */
-    private $specialist;
+    private $name;
 
     /**
-     * @var
+     * @var array
      */
-    private $anesthetists;
+    private $sessions;
 
     /**
-     * @var
+     * OperatingRoom constructor.
      */
-    private $session;
-
-    /**
-     * @return mixed
-     */
-    public function getSpecialist()
+    public function __construct()
     {
-        return $this->specialist;
+        $this->sessions = [];
+    }
+
+    /**
+     * @param $name
+     * @return $this
+     */
+    public function setName($name)
+    {
+        $this->name = $name;
+
+        return $this;
     }
 
     /**
      * @return mixed
      */
-    public function getAnesthetists()
+    public function getName()
     {
-        return $this->anesthetists;
+        return $this->name;
     }
 
     /**
-     * @return mixed
+     * @param Session $session
+     * @return $this
      */
-    public function getSession()
+    public function addSession(Session $session)
     {
-        return $this->session;
+        $this->sessions[] = $session;
+
+        return $this;
     }
 
     /**
-     * @param Specialist $specialist
-     * @return object
+     * @return array
      */
-    public function getORBySpecialist(Specialist $specialist)
+    public function getSessions()
     {
-        return $specialist->getOperatingRoom();
+        return $this->sessions;
     }
 }

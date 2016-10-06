@@ -1,5 +1,7 @@
 <?php
 
+use Factory\ORFactory;
+
 /**
  * Class Manager
  */
@@ -12,6 +14,6 @@ class Manager
      */
     public function setClass($className)
     {
-        return \Factory\ORFactory::getInstance($className);
+        return ORFactory::getInstance($className);
     }
 }
